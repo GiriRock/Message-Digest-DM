@@ -10,7 +10,7 @@ const sourceSysChannel = 'ONL'
 const secretCode = '123456789012'
 
 
-app.post('/msgdigest', (req,res)=>{
+app.post('/', (req,res)=>{
     const msgId = req.query['msgId']
     const SECURE_SECRET =  'O4UGgzQ5GkMefyb01oQ1299565704666'
     const msgConcat = msgId.concat(sourceSysChannel.concat(secretCode));
