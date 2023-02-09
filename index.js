@@ -9,11 +9,23 @@ var map = new HashMap();
 const sourceSysChannel = 'ONL'
 const secretCode = '123456789012'
 
+const mobSourceSysChannel = 'Mobile'
+
 
 app.post('/', (req,res)=>{
     const msgId = req.query['msgId']
     const SECURE_SECRET =  'O4UGgzQ5GkMefyb01oQ1299565704666'
     const msgConcat = msgId.concat(sourceSysChannel.concat(secretCode));
+    res.json({
+        "MsgId" : msgId,
+        "MsgDigest": md5(msgConcat.concat(SECURE_SECRET)).toUpperCase()
+    })
+})
+
+app.post('/mobile', (req,res)=>{
+    const msgId = req.query['msgId']
+    const SECURE_SECRET =  'O4UGgzQ5GkMefyb01oQ1299565704666'
+    const msgConcat = msgId.concat(mobSourceSysChannel.concat(secretCode));
     res.json({
         "MsgId" : msgId,
         "MsgDigest": md5(msgConcat.concat(SECURE_SECRET)).toUpperCase()
